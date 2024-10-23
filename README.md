@@ -4,7 +4,7 @@
 
 - Next.js 14
 - React.js
-- Tailwind
+- Tailwind CSS
 - Shadcn
 - NextAuth
 - Prisma
