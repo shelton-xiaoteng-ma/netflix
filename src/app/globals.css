@@ -4,6 +4,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  @apply bg-zinc-900 h-full overflow-x-hidden;
 }
 
 @layer utilities {
@@ -75,4 +76,12 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+#__next {
+  @apply h-full;
+}
+
+html {
+  @apply h-full;
 }
