@@ -1,12 +1,19 @@
 "use client";
 
 import Input from "@/components/input";
+import axios from "axios";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
 const AuthPage = () => {
+  const router = useRouter();
+
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [variant, setVariant] = useState<"login" | "register">("login");
 
@@ -16,9 +23,35 @@ const AuthPage = () => {
     );
   }, []);
 
-  const handleSubmit = () => {
-    console.log(`submit login: ${email} ${password}`);
-  };
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  const register = useCallback(async () => {
+    try {
+      if (password !== confirmPassword) {
+        throw new Error("Passwords do not match");
+      }
+      await axios.post("/api/register", {
+        name,
+        email,
+        password,
+      });
+      login();
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password, confirmPassword, login]);
 
   return (
     <div className="relative h-full w-full bg-[url('/hero.jpg')] bg-no-repeat bg-center bg-fixed">
@@ -33,38 +66,60 @@ const AuthPage = () => {
                 ? "Sign In"
                 : "Unlimited movies, TV shows, and more"}
             </h2>
-            {variant === "login" && (
-              <div>
-                <div className="flex flex-col gap-4 ">
+            <div>
+              <div className="flex flex-col gap-4 ">
+                {variant === "register" && (
                   <Input
-                    id="email"
-                    type="email"
+                    id="name"
                     onChange={(eValue) => {
-                      setEmail(eValue);
+                      setName(eValue);
                     }}
-                    label="Email"
-                    value={email}
+                    value={name}
                     disabled={false}
+                    label="Your name"
                   />
+                )}
+                <Input
+                  id="email"
+                  type="email"
+                  onChange={(eValue) => {
+                    setEmail(eValue);
+                  }}
+                  label="Email"
+                  value={email}
+                  disabled={false}
+                />
+                <Input
+                  id="password"
+                  type="password"
+                  onChange={(eValue) => {
+                    setPassword(eValue);
+                  }}
+                  label="Password"
+                  disabled={false}
+                  value={password}
+                />
+                {variant === "register" && (
                   <Input
-                    id="password"
+                    id="confirmPassword"
                     type="password"
                     onChange={(eValue) => {
-                      setPassword(eValue);
+                      setConfirmPassword(eValue);
                     }}
-                    label="Password"
+                    value={confirmPassword}
                     disabled={false}
-                    value={password}
+                    label="confirm password"
                   />
-                </div>
-                <button
-                  className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
-                  onClick={handleSubmit}
-                >
-                  Login
-                </button>
+                )}
               </div>
-            )}
+            </div>
+
+            <button
+              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+              onClick={variant === "login" ? login : register}
+            >
+              {variant === "login" ? "Login" : "Sign Up"}
+            </button>
 
             <p className="text-neutral-500 mt-12">
               {variant === "login"
