@@ -27,7 +27,7 @@ const AuthPage = () => {
       await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/",
+        callbackUrl: "/profiles",
       });
     } catch (error) {
       console.log(error);
@@ -120,7 +120,7 @@ const AuthPage = () => {
             <div className="flex items-center gap-4 mt-8 justify-center">
               <div
                 onClick={() =>
-                  signIn("google", { callbackUrl: "/", redirect: true })
+                  signIn("google", { callbackUrl: "/profiles", redirect: true })
                 }
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
@@ -128,7 +128,7 @@ const AuthPage = () => {
               </div>
               <div
                 onClick={() =>
-                  signIn("github", { callbackUrl: "/", redirect: true })
+                  signIn("github", { callbackUrl: "/profiles", redirect: true })
                 }
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:opacity-80 transition"
               >
