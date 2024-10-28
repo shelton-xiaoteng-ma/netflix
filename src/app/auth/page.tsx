@@ -4,14 +4,11 @@ import Input from "@/components/input";
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
 const AuthPage = () => {
-  const router = useRouter();
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,15 +27,12 @@ const AuthPage = () => {
       await signIn("credentials", {
         email,
         password,
-        redirect: false,
         callbackUrl: "/",
       });
-      router.push("/");
-      router.refresh();
     } catch (error) {
       console.log(error);
     }
-  }, [email, password, router]);
+  }, [email, password]);
 
   const register = useCallback(async () => {
     try {
