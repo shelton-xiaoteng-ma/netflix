@@ -34,6 +34,7 @@ const AuthPage = () => {
         callbackUrl: "/",
       });
       router.push("/");
+      router.refresh();
     } catch (error) {
       console.log(error);
     }
