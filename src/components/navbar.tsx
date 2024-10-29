@@ -49,8 +49,6 @@ export const Navbar = () => {
           items-center
           transition
           duration-500
-          bg-zinc-900
-          bg-opacity-90
           ${showBackground ? "bg-zinc-900 bg-opacity-90" : ""}
         `}
       >
