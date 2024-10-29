@@ -1,5 +1,6 @@
 "use client";
 
+import { Billboard } from "@/components/billboard";
 import { Navbar } from "@/components/navbar";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <Billboard />
     </>
   );
 }
