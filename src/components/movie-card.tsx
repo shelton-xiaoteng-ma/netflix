@@ -1,6 +1,7 @@
 import { Movie } from "@prisma/client";
 import Image from "next/image";
 import { BsFillPlayFill } from "react-icons/bs";
+import { FavoriteButton } from "./favorite-button";
 
 interface MovieCardProps {
   data: Movie;
@@ -76,6 +77,7 @@ export const MovieCard = ({ data }: MovieCardProps) => {
             >
               <BsFillPlayFill className="size-4 md:size-8" />
             </div>
+            <FavoriteButton movieId={data.id} />
           </div>
           <p className="text-green-400 font-semibold mt-4">
             New <span className="text-white ">2024</span>

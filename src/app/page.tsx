@@ -3,6 +3,7 @@
 import { Billboard } from "@/components/billboard";
 import { MovieList } from "@/components/movie-list";
 import { Navbar } from "@/components/navbar";
+import { useFavorites } from "@/hooks/use-favorites";
 import { useMovieList } from "@/hooks/use-movie-list";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -13,6 +14,7 @@ export default function Home() {
   const router = useRouter();
 
   const { data: movies = [] } = useMovieList();
+  const { data: favorites = [] } = useFavorites();
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -30,6 +32,7 @@ export default function Home() {
       <Billboard />
       <div className="pb-40">
         <MovieList title="Trending Now" data={movies} />
+        <MovieList title="My List" data={favorites} />
       </div>
     </>
   );
