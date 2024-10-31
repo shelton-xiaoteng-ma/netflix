@@ -9,7 +9,7 @@ export default async function handler(
 ) {
   try {
     if (req.method === "GET") {
-      const { currentUser } = await serverAuth(req);
+      const { currentUser } = await serverAuth(req, res);
       const favoriteMovies = await prismadb.movie.findMany({
         where: {
           id: {
