@@ -1,5 +1,5 @@
 import { JotaiProvider } from "@/components/jotai-provider";
-import SessionProviderWrapper from "@/components/SessionProviderWrapper";
+import SessionProviderWrapper from "@/components/session-provider-wrapper";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
