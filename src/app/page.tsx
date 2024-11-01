@@ -1,6 +1,7 @@
 "use client";
 
 import { Billboard } from "@/components/billboard";
+import { InfoModal } from "@/components/info-modal";
 import { MovieList } from "@/components/movie-list";
 import { Navbar } from "@/components/navbar";
 import { useFavorites } from "@/hooks/use-favorites";
@@ -28,6 +29,7 @@ export default function Home() {
 
   return (
     <>
+      <InfoModal />
       <Navbar />
       <Billboard />
       <div className="pb-40">
