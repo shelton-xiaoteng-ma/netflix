@@ -13,6 +13,7 @@ interface MovieCardProps {
 export const MovieCard = ({ data }: MovieCardProps) => {
   const router = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [infoModalData, setInfoModalData] = useInfoModal();
 
   const handleOpenInfoModal = () => {

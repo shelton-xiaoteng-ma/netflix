@@ -7,6 +7,7 @@ import { PlayButton } from "./play-button";
 export const Billboard = () => {
   const { data } = useBillboard();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [infoModalData, setInfoModalData] = useInfoModal();
 
   const handleInfoModal = () => {

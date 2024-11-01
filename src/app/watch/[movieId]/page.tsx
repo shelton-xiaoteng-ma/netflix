@@ -7,7 +7,7 @@ const WatchPage = () => {
   const router = useRouter();
   const params = useParams();
   const movieId = params?.movieId as string;
-  const { data: movie, isLoading } = useMovie({ movieId: movieId as string });
+  const { data: movie } = useMovie({ movieId: movieId as string });
 
   return (
     <div className="h-screen w-screen bg-black">

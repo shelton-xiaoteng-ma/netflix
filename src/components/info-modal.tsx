@@ -11,7 +11,7 @@ export const InfoModal = () => {
 
   const handleClose = useCallback(() => {
     setInfoModalData({ visible: false, movieId: "" });
-  }, []);
+  }, [setInfoModalData]);
 
   if (!infoModalData?.visible) return null;
 
