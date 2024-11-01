@@ -1,5 +1,5 @@
 import prismadb from "@/lib/prismadb";
-import NextAuth, { SessionStrategy } from "next-auth";
+import NextAuth, { SessionStrategy, User } from "next-auth";
 
 import Credentials from "next-auth/providers/credentials";
 import GithubProvider from "next-auth/providers/github";
@@ -59,6 +59,21 @@ export const authOptions = {
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user }: { user: User }) {
+      // Check if user exists
+      const existingUser = await prismadb.user.findUnique({
+        where: { email: user.email ?? undefined },
+      });
+
+      // If user exists, allow sign-in; if not, prompt an error
+      if (existingUser) {
+        return true;
+      } else {
+        throw new Error("OAuthAccountNotLinked");
+      }
+    },
+  },
   pages: {
     signIn: "/auth",
   },
