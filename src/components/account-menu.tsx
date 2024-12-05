@@ -37,7 +37,7 @@ export const AccountMenu = ({ visible }: AccountMenuProps) => {
           onClick={() => signOut()}
           className="px-3 text-center text-white text-sm hover:underline"
         >
-          Sign out of Netflix
+          Sign out of Netflicks
         </div>
       </div>
     </div>

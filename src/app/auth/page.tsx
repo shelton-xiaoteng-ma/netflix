@@ -148,7 +148,7 @@ const AuthPage = () => {
 
             <p className="text-neutral-500 mt-12">
               {variant === "login"
-                ? "New to Netflix?"
+                ? "New to Netflicks?"
                 : "Already have an account ?"}
               <span
                 className="text-white ml-2 hover:underline cursor-pointer"
